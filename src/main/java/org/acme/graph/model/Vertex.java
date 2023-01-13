@@ -100,7 +100,7 @@ public class Vertex {
 		return this.inEdges;
 	}
 
-	@JsonIgnore	
+	@JsonIgnore
 	public List<Edge> getOutEdges() {
 		return this.outEdges;
 	}

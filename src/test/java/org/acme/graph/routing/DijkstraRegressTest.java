@@ -1,16 +1,15 @@
 package org.acme.graph.routing;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-
 import java.util.List;
 
 import org.acme.graph.TestGraphFactory;
+import org.acme.graph.errors.NotFoundException;
 import org.acme.graph.model.Edge;
 import org.acme.graph.model.Graph;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 /**
  * Tests fonctionnels sur DijkstraPathFinder
@@ -39,8 +38,9 @@ public class DijkstraRegressTest {
 
 	@Test
 	public void testBANotFound() {
-		List<Edge> path = finder.findPath(graph.findVertex("b"), graph.findVertex("a"));
-		assertNull(path);
+		assertThrows(NotFoundException.class, () -> {
+			List<Edge> path = finder.findPath(graph.findVertex("b"), graph.findVertex("a"));
+		});
 	}
 
 	@Test
