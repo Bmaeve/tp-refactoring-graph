@@ -6,6 +6,7 @@ import org.acme.graph.TestGraphFactory;
 import org.acme.graph.errors.NotFoundException;
 import org.acme.graph.model.Edge;
 import org.acme.graph.model.Graph;
+import org.acme.graph.model.Path;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,6 +20,8 @@ import static org.junit.Assert.*;
  */
 public class DijkstraRegressTest {
 
+	public static final double EPSILON = 1.0e-15;
+
 	private Graph graph;
 
 	private DijkstraPathFinder finder;
@@ -31,32 +34,32 @@ public class DijkstraRegressTest {
 
 	@Test
 	public void testABFound() {
-		List<Edge> path = finder.findPath(graph.findVertex("a"), graph.findVertex("b"));
+		Path path = finder.findPath(graph.findVertex("a"), graph.findVertex("b"));
 		assertNotNull(path);
-		assertEquals(1, path.size());
+		assertEquals(1, path.getLength(), EPSILON);
 	}
 
 	@Test
 	public void testBANotFound() {
 		assertThrows(NotFoundException.class, () -> {
-			List<Edge> path = finder.findPath(graph.findVertex("b"), graph.findVertex("a"));
+			Path path = finder.findPath(graph.findVertex("b"), graph.findVertex("a"));
 		});
 	}
 
 	@Test
 	public void testACFoundWithCorrectOrder() {
-		List<Edge> path = finder.findPath(graph.findVertex("a"), graph.findVertex("c"));
+		Path path = finder.findPath(graph.findVertex("a"), graph.findVertex("c"));
 		assertNotNull(path);
-		assertEquals(2, path.size());
+		assertEquals(2, path.getLength(), EPSILON);
 
 		int index = 0;
 		{
-			Edge edge = path.get(index++);
+			Edge edge = path.getEdgeN(index++);
 			assertEquals("a", edge.getSource().getId());
 			assertEquals("b", edge.getTarget().getId());
 		}
 		{
-			Edge edge = path.get(index++);
+			Edge edge = path.getEdgeN(index++);
 			assertEquals("b", edge.getSource().getId());
 			assertEquals("c", edge.getTarget().getId());
 		}
