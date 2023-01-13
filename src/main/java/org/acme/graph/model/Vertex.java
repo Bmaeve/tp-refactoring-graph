@@ -3,6 +3,9 @@ package org.acme.graph.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.locationtech.jts.geom.Coordinate;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 
  * Un sommet dans un graphe
@@ -35,8 +38,19 @@ public class Vertex {
 	 */
 	private boolean visited;
 
-	Vertex() {
+	/**
+	 * dijkstra - Liste des edges entrants
+	 */
+	private List<Edge> inEdges;
 
+	/**
+	 * dijkstra - Liste des edges sortants
+	 */
+	private List<Edge> outEdges;
+
+	Vertex() {
+		this.inEdges = new ArrayList<>();
+		this.outEdges = new ArrayList<>();
 	}
 
 	public String getId() {
@@ -79,6 +93,14 @@ public class Vertex {
 
 	public void setVisited(boolean visited) {
 		this.visited = visited;
+	}
+
+	public List<Edge> getInEdges() {
+		return this.inEdges;
+	}
+
+	public List<Edge> getOutEdges() {
+		return this.outEdges;
 	}
 
 	@Override
