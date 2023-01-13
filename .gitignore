@@ -3,5 +3,8 @@
 /.project
 /.settings/
 /.vscode/
+/.idea/
+/tp-refactoring-graph.iml
 
 /.apt_generated/
+

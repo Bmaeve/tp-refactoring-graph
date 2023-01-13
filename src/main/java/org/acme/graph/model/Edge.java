@@ -33,8 +33,11 @@ public class Edge {
 	 */
 	private Vertex target;
 
-	public Edge() {
-
+	Edge(Vertex source, Vertex target) {
+		assert (source != null);
+		assert (target != null);
+		this.source = source;
+		this.target = target;
 	}
 
 	public String getId() {
