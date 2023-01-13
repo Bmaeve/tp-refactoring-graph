@@ -102,7 +102,6 @@ public class Graph {
 	 * @param vertex
 	 * @return
 	 */
-	@JsonIgnore
 	public List<Edge> getInEdges(Vertex vertex) {
 		return vertex.getInEdges();
 	}
@@ -113,7 +112,6 @@ public class Graph {
 	 * @param vertex
 	 * @return
 	 */
-	@JsonIgnore
 	public List<Edge> getOutEdges(Vertex vertex) {
 		return vertex.getOutEdges();
 	}

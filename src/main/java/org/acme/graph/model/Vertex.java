@@ -95,10 +95,12 @@ public class Vertex {
 		this.visited = visited;
 	}
 
+	@JsonIgnore
 	public List<Edge> getInEdges() {
 		return this.inEdges;
 	}
 
+	@JsonIgnore	
 	public List<Edge> getOutEdges() {
 		return this.outEdges;
 	}
